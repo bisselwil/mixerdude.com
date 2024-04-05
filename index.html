@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <title>Mixer Dude</title>
+    <meta content="Mixer Dude Site (mixerdude.com)" property="og:title" />
+    <meta content="The personal website for Wilson Cissel/Mixer Dude's project." property="og:description" />
+    <meta content="https://mixerdude.com" property="og:url" />
+    <meta content="https://mixerdude.com/logo.png" property="og:image" />
+    <meta content="#ADD8E6" data-react-helmet="true" name="theme-color" />
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <style>
+        
+
+
+.menu {
+  height: 100%;
+  width: 0; 
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #d9d9d9;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px; 
+}
+
+.menu a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.menu .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-right .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .menu {padding-top: 15px;}
+  .menu a {font-size: 18px;}
+}
+
+
+  body {
+    background-color: #262626;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+
+  #header {
+    background-color: #e6e6e6;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  #nav {
+    display: flex;
+    justify-content: flex-end; /* changed from space-between */
+    align-items: center;
+    width: 40%;
+  }
+
+  #nav a {
+    color: black;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 8px;
+    border-radius: 30px;
+    
+    transition: all 0.3s ease-in-out;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  #nav a:hover {
+    background-color: #393939;
+    color: white;
+    box-shadow: 4px 4px 4px #404040;
+  }
+
+  section {
+    background-color: #404040;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 0;
+	color: #ffffff
+  }
+  
+  h4 {
+    
+	color: #ffffff
+  }
+  
+  .aligncenter {
+    text-align: center;
+}
+
+  p {
+    margin: 10px 0;
+	color: #ffffff
+  }
+
+  audio {
+    margin: 20px 0;
+  }
+
+  button {
+    background-color: #0072f5;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  disbutton { background-color: gray;
+  color: darkgray;}
+
+  button:hover {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+
+.disco:hover {background-color: black!important;
+
+color: white !important;}
+
+
+  .dis:hover {background-color: #7289d9 !important;}
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .yt:hover {background-color: #FF0000 !important;
+
+  
+  }
+
+  .wcs:hover {background-color: #FFA036 !important}
+
+
+.logo {border-radius: 50%;}
+
+center {
+display: block;
+margin-left: auto;
+margin-right: auto;
+margin: auto;
+width: 50%;
+text-align: center;
+}
+
+
+.gallery {
+    position: relative;
+    max-width: 600px; /* Adjust based on your requirement */
+    margin: 20px auto;
+    overflow: hidden; /* Ensures the gallery container does not grow with the image */
+}
+
+.gallery-image-container {
+    position: relative;
+    height: 400px; /* Adjust this to match your preferred aspect ratio */
+    width: 100%; /* You can also adjust this if needed */
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%; /* Fill the container */
+    object-fit: contain; /* Change to contain to prevent zooming/clipping */
+    display: none;
+}
+
+/* Hover effect for arrows and dots */
+.gallery:hover .arrow, .gallery:hover .dot-container {
+    display: block;
+}
+
+.gallery-image:first-of-type {
+    display: block; /* Show the first image */
+}
+
+.arrow {
+    display: none; /* Initially hide arrows */
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    border: none;
+    z-index: 2; /* Ensure arrows are above the images */
+}
+
+.gallery:hover .arrow {
+    display: block; /* Show arrows on gallery hover */
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.dot-container {
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 10px; /* Position dots at the bottom of the gallery */
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.active {
+    background-color: #717171;
+}
+
+.arrow, .dot-container {
+    display: none; /* Hide arrows and dots by default */
+    /* Rest of the styles remain the same */
+}
+
+.gallery:hover .dot-container {
+    visibility: visible; /* Show dots on hover */
+}
+
+
+.active, .dot:hover {
+    background-color: #717171; /* Change the color to indicate the active/hover state */
+}
+
+button:disabled {
+  background-color: #cccccc; /* Light gray background */
+  color: #666666; /* Darker gray text */
+ cursor:default;
+}
+
+
+.button-container {
+    display: flex; /* This will layout the children (buttons) in a row */
+    justify-content: center; /* This centers the buttons in the container */
+    gap: 10px; /* Adjusts space between the buttons */
+}
+
+#header {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure navbar is above other content */
+    /* Keep the rest of your styles for #header */
+}
+
+footer {
+    background-color: #262626; /* Dark background for the footer */
+    color: #ffffff; /* Light text color for contrast */
+    text-align: center; /* Center the footer content */
+    padding: 20px 10px; /* Add some padding around the content */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    margin: auto;
+    max-width: 1200px; /* Maximum width of the content, you can adjust this */
+}
+
+.social-links a {
+    color: #ffffff; /* Keeping the link color light for contrast */
+    text-decoration: none; /* Removing underline from links */
+    margin: 0 10px; /* Adding some space between the links */
+}
+
+.social-links a:hover {
+    text-decoration: underline; /* Underline on hover for a visual cue */
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img class="logo" id="logo" src="logo.png" alt="Our Logo" width="65px">
+        
+        <nav id="nav">
+            
+            <a target="_blank" href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw" class="yt">Youtube Channel</a>
+<a target="_blank" href="https://discord.gg/QMYfmSkchY" class="dis">Discord</a>
+<a target="_blank" href="https://wilsoncissel.com" class="wcs">wilsoncissel.com</a>
+        </nav>
+    </div>
+
+    <section>
+        <p class="aligncenter">
+            
+        </p>
+        <br>
+        <p align="center">
+        <img class="logo" id="logo" src="logo.png" alt="Our Logo" width="215px">
+      </p>
+        
+        <br>
+        
+        <h1 align="center">Welcome to the Offical Mixer Dude Site</h1>
+
+        <h4 align="center">Check Out my links!</h4>
+        <div class="button-container">
+            <a target="_blank" href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw">
+                <button>Channel</button>
+            </a>
+            <a target="_blank" href="https://discord.gg/QMYfmSkchY">
+              <button>Discord</button>
+          </a>
+        </div>
+    </section>
+    <section>
+
+      <p class="aligncenter">
+            
+      </p>
+      <br>
+      
+
+
+      <h1 align="center">Wilo OS</h1>
+      
+      <div class="gallery">
+        <div class="gallery-image-container">
+            <!-- Make sure the first image is set to display: block; in your CSS -->
+            <img class="gallery-image" src="gall1.png" alt="Image 1">
+            <img class="gallery-image" src="gall2.png" alt="Image 2">
+            <img class="gallery-image" src="gall3.png" alt="Image 3">
+            
+            <!-- Add more images as needed -->
+        </div>
+        <button class="arrow left-arrow" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="arrow right-arrow" onclick="moveSlide(1)">&#10095;</button>
+        
+    </div>
+        <button class="arrow right-arrow" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+    
+
+     
+    
+
+
+
+      
+    
+    <script src="gallery.js"></script>
+    
+      
+      <h4 align="center">Mixer Dude made Wilo OS Back some years ago back in 2018. <br>Since then he's been trying to make Wilo OS One of the best Google Slide OSes on the internet.<br> Starting with Wilo OS 6, than 7, than 8 which was one of the best gslide OSes out there. <br>Now, Once Released, Wilo OS 10 is going to take it further than ever.</h4>
+      <p class="aligncenter">
+        <div class="button-container">
+          <a href="https://docs.google.com/presentation/d/1UpMh0DA3kwEKvuEgxSv21RvPIi00MwgoupxiZFJXfIA/edit">
+              <button>Wilo OS 8</button>
+          </a>
+          <a >
+              <button disabled="">Wilo OS 10 (Coming Soon)</button>
+          </a>
+      </div>
+    </p>
+
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <section>
+      <p class="aligncenter">
+          
+      </p>
+      
+      <p align="center">
+      
+    </p>
+    
+      
+      
+      <h1 align="center">wilsoncissel.com</h1>
+      <p align="center">
+<img src="wc.ico" width="105px">
+</p>
+      <h4 align="center">Want to look at other projects i've created outside of Mixer Dude? Take a look at my other site</h4>
+      <div class="button-container">
+          <a target="_blank" href="https://wilsoncissel.com">
+              <button>Go</button>
+          </a>
+        
+      </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>More stuff will be added to this site as time goes on.</p>
+      <br>
+      <p>© 2024 Mixer Dude. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw" target="_blank">YouTube</a> |
+            <a href="https://discord.gg/QMYfmSkchY" target="_blank">Discord</a> |
+            <a href="https://wilsoncissel.com" target="_blank">wilsoncissel.com</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
