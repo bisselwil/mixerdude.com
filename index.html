@@ -1,469 +1,449 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <title>Mixer Dude</title>
-    <meta content="Mixer Dude Site (mixerdude.com)" property="og:title" />
-    <meta content="The personal website for Wilson Cissel/Mixer Dude's project." property="og:description" />
-    <meta content="https://mixerdude.com" property="og:url" />
-    <meta content="https://mixerdude.com/logo.png" property="og:image" />
-    <meta content="#ADD8E6" data-react-helmet="true" name="theme-color" />
-    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Mixer Dude - Project Hub</title>
+    <meta content="Mixer Dude Site (mixerdude.com)" property="og:title">
+    <meta content="The personal project website for Wilson Cissel/Mixer Dude." property="og:description">
+    <meta content="https://mixerdude.com" property="og:url">
+    <meta content="https://mixerdude.com/logo.png" property="og:image">
+    <meta content="#ADD8E6" data-react-helmet="true" name="theme-color">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://www.mixerdude.com/favicon.ico">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --bg-dark: #262626;
+            --bg-medium: #404040;
+            --bg-light: #e6e6e6;
+            --text-light: #ffffff;
+            --text-dark: #000000;
+            --accent-blue: #0072f5;
+            --accent-hover: #005bbd;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-light);
+        }
+
+        #header {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo-img {
+            border-radius: 50%;
+        }
+
+        #nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            /* TRANSITION SHORTENED */
+            transition: all 0.2s ease-in-out;
+        }
+
+        #nav a:hover {
+            background-color: var(--bg-medium);
+            color: var(--text-light);
+        }
+        
+        #nav a.yt:hover {
+            background-color: #FF0000;
+            color: var(--text-light);
+        }
+        #nav a.dis:hover {
+            background-color: #7289d9;
+            color: var(--text-light);
+        }
+        #nav a.hub:hover {
+            background-color: #999999;
+            color: var(--text-dark);
+        }
+        #nav a.wcs:hover {
+            background-color: #FFA036;
+            color: var(--text-light);
+        }
         
 
+        /* Hero Section */
+        .hero {
+            background-color: var(--bg-medium);
+            text-align: center;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-.menu {
-  height: 100%;
-  width: 0; 
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  background-color: #d9d9d9;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px; 
-}
+        .hero-logo {
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
-.menu a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
 
-.menu .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+        }
 
-#main {
-  transition: margin-right .5s;
-  padding: 16px;
-}
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-@media screen and (max-height: 450px) {
-  .menu {padding-top: 15px;}
-  .menu a {font-size: 18px;}
-}
+        .btn {
+            background-color: var(--accent-blue);
+            color: var(--text-light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            /* TRANSITION SHORTENED */
+            transition: all 0.2s ease-in-out;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
 
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 114, 245, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0px);
+            box-shadow: none;
+        }
 
-  body {
-    background-color: #262626;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
-  }
+        .btn-discord { background-color: #7289d9; }
+        .btn-discord:hover { background-color: #5f73bc; box-shadow: 0 4px 10px rgba(114, 137, 217, 0.3); }
 
-  #header {
-    background-color: #e6e6e6;
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
+        .btn-youtube { background-color: #FF0000; }
+        .btn-youtube:hover { background-color: #cc0000; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3); }
 
-  #logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
+        /* Main Content Wrapper */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        h2.section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--accent-blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .center-title {
+            text-align: center;
+        }
 
-  #nav {
-    display: flex;
-    justify-content: flex-end; /* changed from space-between */
-    align-items: center;
-    width: 40%;
-  }
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
 
-  #nav a {
-    color: black;
-    text-decoration: none;
-    margin: 0 10px;
-    padding: 8px;
-    border-radius: 30px;
-    
-    transition: all 0.3s ease-in-out;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
+        .project-card {
+            background-color: var(--bg-medium);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            /* TRANSITION SHORTENED */
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
 
-  #nav a:hover {
-    background-color: #393939;
-    color: white;
-    box-shadow: 4px 4px 4px #404040;
-  }
+        .project-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .project-card p {
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        
+        .project-card img.project-icon {
+            display: block;
+            margin: 0 auto 20px auto;
+            border-radius: 15px;
+        }
 
-  section {
-    background-color: #404040;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 5px;
-  }
+        /* Wilo OS Gallery */
+        .gallery {
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .gallery-image-container {
+            position: relative;
+            height: 250px; 
+            width: 100%;
+        }
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        .arrow {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0,0,0,0.3);
+            border: none;
+            z-index: 2;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+        .left-arrow { left: 10px; }
+        .right-arrow { right: 10px; }
+        .arrow:hover { background-color: rgba(0,0,0,0.6); }
 
-  h1 {
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 0;
-	color: #ffffff
-  }
-  
-  h4 {
-    
-	color: #ffffff
-  }
-  
-  .aligncenter {
-    text-align: center;
-}
-
-  p {
-    margin: 10px 0;
-	color: #ffffff
-  }
-
-  audio {
-    margin: 20px 0;
-  }
-
-  button {
-    background-color: #0072f5;
-    color: #ffffff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-
-  disbutton { background-color: gray;
-  color: darkgray;}
-
-  button:hover {
-    background-color: #f0f0f0;
-    color: #333;
-  }
-
-.disco:hover {background-color: black!important;
-
-color: white !important;}
-
-
-  .dis:hover {background-color: #7289d9 !important;}
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .yt:hover {background-color: #FF0000 !important;
-
-  
-  }
-
-  .wcs:hover {background-color: #FFA036 !important}
-
-
-.logo {border-radius: 50%;}
-
-center {
-display: block;
-margin-left: auto;
-margin-right: auto;
-margin: auto;
-width: 50%;
-text-align: center;
-}
-
-
-.gallery {
-    position: relative;
-    max-width: 600px; /* Adjust based on your requirement */
-    margin: 20px auto;
-    overflow: hidden; /* Ensures the gallery container does not grow with the image */
-}
-
-.gallery-image-container {
-    position: relative;
-    height: 400px; /* Adjust this to match your preferred aspect ratio */
-    width: 100%; /* You can also adjust this if needed */
-}
-
-.gallery-image {
-    width: 100%;
-    height: 100%; /* Fill the container */
-    object-fit: contain; /* Change to contain to prevent zooming/clipping */
-    display: none;
-}
-
-/* Hover effect for arrows and dots */
-.gallery:hover .arrow, .gallery:hover .dot-container {
-    display: block;
-}
-
-.gallery-image:first-of-type {
-    display: block; /* Show the first image */
-}
-
-.arrow {
-    display: none; /* Initially hide arrows */
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    color: rgb(255, 255, 255);
-    background-color: transparent;
-    border: none;
-    z-index: 2; /* Ensure arrows are above the images */
-}
-
-.gallery:hover .arrow {
-    display: block; /* Show arrows on gallery hover */
-}
-
-.left-arrow {
-    left: 10px;
-}
-
-.right-arrow {
-    right: 10px;
-}
-
-.dot-container {
-    text-align: center;
-    padding: 10px 0;
-    position: absolute;
-    width: 100%;
-    bottom: 10px; /* Position dots at the bottom of the gallery */
-}
-
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot.active {
-    background-color: #717171;
-}
-
-.arrow, .dot-container {
-    display: none; /* Hide arrows and dots by default */
-    /* Rest of the styles remain the same */
-}
-
-.gallery:hover .dot-container {
-    visibility: visible; /* Show dots on hover */
-}
-
-
-.active, .dot:hover {
-    background-color: #717171; /* Change the color to indicate the active/hover state */
-}
-
-button:disabled {
-  background-color: #cccccc; /* Light gray background */
-  color: #666666; /* Darker gray text */
- cursor:default;
-}
-
-
-.button-container {
-    display: flex; /* This will layout the children (buttons) in a row */
-    justify-content: center; /* This centers the buttons in the container */
-    gap: 10px; /* Adjusts space between the buttons */
-}
-
-#header {
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Ensure navbar is above other content */
-    /* Keep the rest of your styles for #header */
-}
-
-footer {
-    background-color: #262626; /* Dark background for the footer */
-    color: #ffffff; /* Light text color for contrast */
-    text-align: center; /* Center the footer content */
-    padding: 20px 10px; /* Add some padding around the content */
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-.footer-content {
-    margin: auto;
-    max-width: 1200px; /* Maximum width of the content, you can adjust this */
-}
-
-.social-links a {
-    color: #ffffff; /* Keeping the link color light for contrast */
-    text-decoration: none; /* Removing underline from links */
-    margin: 0 10px; /* Adding some space between the links */
-}
-
-.social-links a:hover {
-    text-decoration: underline; /* Underline on hover for a visual cue */
-}
-
-
+        /* Slide OS Hub Card */
+        #hub-card {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://slideoshub.com/images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #555;
+        }
+        
+        #hub-card .hub-logo {
+            width: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--text-light);
+        }
+        
+        #hub-card .btn {
+            background-color: #f0f0f0;
+            color: var(--text-dark);
+        }
+        
+        #hub-card .btn:hover {
+            background-color: #cccccc;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            margin: auto;
+            max-width: 1200px;
+        }
+        .social-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        .social-links a:hover {
+            color: var(--text-light);
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div id="header">
-        <img class="logo" id="logo" src="logo.png" alt="Our Logo" width="65px">
-        
+    <header id="header">
+        <a href="#" id="logo">
+            <img class="logo-img" src="./Mixer Dude_files/logo.png" alt="Mixer Dude Logo" width="50px">
+            <strong>Mixer Dude</strong>
+        </a>
         <nav id="nav">
-            
-            <a target="_blank" href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw" class="yt">Youtube Channel</a>
-<a target="_blank" href="https://discord.gg/QMYfmSkchY" class="dis">Discord</a>
-<a target="_blank" href="https://wilsoncissel.com" class="wcs">wilsoncissel.com</a>
+            <a target="_blank" href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw" class="yt">Youtube</a>
+            <a target="_blank" href="https://discord.gg/QMYfmSkchY" class="dis">Discord</a>
+            <a target="_blank" href="https://slideoshub.com/" class="hub">Slide OS Hub</a>
+            <a target="_blank" href="https://wilsoncissel.com/" class="wcs">wilsoncissel.com</a>
         </nav>
-    </div>
+    </header>
 
-    <section>
-        <p class="aligncenter">
+    <main>
+        <section class="hero">
+            <img class="hero-logo" src="./Mixer Dude_files/logo.png" alt="Mixer Dude Logo" width="150px">
+            <h1>Welcome to Mixer Dude's Hub</h1>
+            <p>The official site for Mixer Dude</p>
+            <div class="button-container">
+                <a target="_blank" href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw" class="btn btn-youtube">My Channel</a>
+                <a target="_blank" href="https://discord.gg/QMYfmSkchY" class="btn btn-discord">Join the Discord</a>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
             
-        </p>
-        <br>
-        <p align="center">
-        <img class="logo" id="logo" src="logo.png" alt="Our Logo" width="215px">
-      </p>
-        
-        <br>
-        
-        <h1 align="center">Welcome to the Offical Mixer Dude Site</h1>
+            <div class="center-title">
+                 <h2 class="section-title">My Projects</h2>
+            </div>
+           
 
-        <h4 align="center">Check Out my links!</h4>
-        <div class="button-container">
-            <a target="_blank" href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw">
-                <button>Channel</button>
-            </a>
-            <a target="_blank" href="https://discord.gg/QMYfmSkchY">
-              <button>Discord</button>
-          </a>
+            <div class="projects-grid">
+                
+                <section class="project-card" id="wilo-os-card">
+                    <h3>Wilo OS</h3>
+                    
+                    <div class="gallery">
+                        <div class="gallery-image-container">
+                            <img class="gallery-image" src="https://www.mixerdude.com/gall1.png" alt="Wilo OS Image 1">
+                            <img class="gallery-image" src="https://www.mixerdude.com/gall2.png" alt="Wilo OS Image 2">
+                            <img class="gallery-image" src="https://www.mixerdude.com/gall3.png" alt="Wilo OS Image 3">
+                        </div>
+                        <button class="arrow left-arrow" onclick="moveSlide(-1)">❮</button>
+                        <button class="arrow right-arrow" onclick="moveSlide(1)">❯</button>
+                    </div>
+                    
+                    <p>
+                        Started in 2018, Wilo OS aims to be one of the best Google Slide OSes on the internet.
+                        From Wilo OS 8 to the upcoming Wilo OS 10, it's pushing the limits of what's possible.
+                    </p>
+                    <div class="button-container">
+                        <a href="https://docs.google.com/presentation/d/1UpMh0DA3kwEKvuEgxSv21RvPIi00MwgoupxiZFJXfIA/edit" class="btn">Wilo OS 8</a>
+                        <a href="https://docs.google.com/presentation/d/1zHlNbZnDoemQZky1IEHzYZEZ1AIE8d0SYHR74W7swXk/edit?usp=sharing" class="btn">Wilo OS 10</a>
+                    </div>
+                </section>
+
+                <section class="project-card" id="hub-card">
+                    <h3>Slide OS Hub</h3>
+                    
+                    <img src="https://slideoshub.com/logo.png" alt="Slide OS Hub Logo" class="project-icon hub-logo"> 
+                    <p>
+                        The Slide OS Hub is the community center for Google Slide OS creators.
+                        Browse a variety of OSes from different creators, get featured, and explore the FAQ.
+                    </p>
+                    <div class="button-container">
+                        <a target="_blank" href="https://slideoshub.com/" class="btn">Visit the Hub</a>
+                    </div>
+                </section>
+                
+                <section class="project-card">
+                    <h3>wilsoncissel.com</h3>
+                    
+                    <img src="./Mixer Dude_files/wc.ico" alt="wilsoncissel.com icon" class="project-icon" width="105px">
+                    
+                    <p>
+                        Want to look at other projects I've created outside of Mixer Dude?
+                        Take a look at my personal portfolio and professional site.
+                    </p>
+                    <div class="button-container">
+                        <a target="_blank" href="https://wilsoncissel.com/" class="btn">Go to Site</a>
+                    </div>
+                </section>
+                
+            </div> 
+        </div> 
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>More stuff will be added to this site as time goes on.</p>
+            <p>© 2024 Mixer Dude. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw" target="_blank">YouTube</a> |
+                <a href="https://discord.gg/QMYfmSkchY" target="_blank">Discord</a> |
+                <a href="https://slideoshub.com/" target="_blank">Slide OS Hub</a> |
+                <a href="https://wilsoncissel.com/" target="_blank">wilsoncissel.com</a>
+            </div>
         </div>
-    </section>
-    <section>
+    </footer>
 
-      <p class="aligncenter">
+    <script>
+        let slideIndex = 1;
+        showSlide(slideIndex);
+
+        function moveSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            let i;
+            let slides = document.querySelectorAll("#wilo-os-card .gallery-image"); 
             
-      </p>
-      <br>
-      
-
-
-      <h1 align="center">Wilo OS</h1>
-      
-      <div class="gallery">
-        <div class="gallery-image-container">
-            <!-- Make sure the first image is set to display: block; in your CSS -->
-            <img class="gallery-image" src="gall1.png" alt="Image 1">
-            <img class="gallery-image" src="gall2.png" alt="Image 2">
-            <img class="gallery-image" src="gall3.png" alt="Image 3">
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
             
-            <!-- Add more images as needed -->
-        </div>
-        <button class="arrow left-arrow" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="arrow right-arrow" onclick="moveSlide(1)">&#10095;</button>
-        
-    </div>
-        <button class="arrow right-arrow" onclick="moveSlide(1)">&#10095;</button>
-    </div>
-    
-
-     
-    
-
-
-
-      
-    
-    <script src="gallery.js"></script>
-    
-      
-      <h4 align="center">Mixer Dude made Wilo OS Back some years ago back in 2018. <br>Since then he's been trying to make Wilo OS One of the best Google Slide OSes on the internet.<br> Starting with Wilo OS 6, than 7, than 8 which was one of the best gslide OSes out there. <br>Now, Once Released, Wilo OS 10 is going to take it further than ever.</h4>
-      <p class="aligncenter">
-        <div class="button-container">
-          <a href="https://docs.google.com/presentation/d/1UpMh0DA3kwEKvuEgxSv21RvPIi00MwgoupxiZFJXfIA/edit">
-              <button>Wilo OS 8</button>
-          </a>
-          <a href="https://docs.google.com/presentation/d/1zHlNbZnDoemQZky1IEHzYZEZ1AIE8d0SYHR74W7swXk/edit?usp=sharing">
-              <button>Wilo OS 10</button>
-          </a>
-      </div>
-    </p>
-
-
-
-
-
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-    <section>
-      <p class="aligncenter">
-          
-      </p>
-      
-      <p align="center">
-      
-    </p>
-    
-      
-      
-      <h1 align="center">wilsoncissel.com</h1>
-      <p align="center">
-<img src="wc.ico" width="105px">
-</p>
-      <h4 align="center">Want to look at other projects i've created outside of Mixer Dude? Take a look at my other site</h4>
-      <div class="button-container">
-          <a target="_blank" href="https://wilsoncissel.com">
-              <button>Go</button>
-          </a>
-        
-      </div>
-  </section>
-
-  <footer>
-    <div class="footer-content">
-      <p>More stuff will be added to this site as time goes on.</p>
-      <br>
-      <p>© 2024 Mixer Dude. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://www.youtube.com/channel/UCPYSD7MuRchbFEr-ZcoAaxw" target="_blank">YouTube</a> |
-            <a href="https://discord.gg/QMYfmSkchY" target="_blank">Discord</a> |
-            <a href="https://wilsoncissel.com" target="_blank">wilsoncissel.com</a>
-        </div>
-    </div>
-</footer>
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            if (slides[slideIndex-1]) {
+                slides[slideIndex-1].style.display = "block";
+            }
+        }
+    </script>
 
 </body>
 </html>
